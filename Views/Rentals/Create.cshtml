@@ -31,7 +31,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn btn-outline-primary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn btn-outline-primary">Understood</button>
+          <button type="button" class="btn btn btn-outline-primary" onclick="AddMovieTemp();">Agregar</button>
         </div>
       </div>
     </div>
@@ -81,6 +81,36 @@
 } *@
     </tbody>
 </table>
+
+<script>
+function AddMovieTemp() {
+    //console.log("Guarda la pelicula");
+    var movieID = $('#MovieID').val(); //con json busca el elemento que se llame MovieID
+
+    $.ajax({
+        type: "POST", //cuando queremos guardar informacion
+        url: '../../Rentals/AddMovieTemp',
+        data: {MovieID: movieID}, //puede estar vacio o no
+        success: function(resultado) {
+          if(resultado == true){
+            $('#staticBackdrop').modal('hide');
+
+            SearchMovieTemp();
+
+            location.href = "../../Rentals/Create";
+
+
+          }
+          else {
+            alert("No se pudo agregar");
+          }
+        },
+        error: function(result){
+          console.log("Error debido a: " + result);
+        }
+    });
+  }
+</script>
 
 </body>
 </html>
