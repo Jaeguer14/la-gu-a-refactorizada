@@ -1,5 +1,5 @@
-# Prerequisites
-*.d
+# # Prerequisites
+#  *.d
 
 # Object files
 *.o
@@ -50,3 +50,8 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+#Estos archivos no se suben porque son creados al hacer un build 
+bin
+vscode
+obj
