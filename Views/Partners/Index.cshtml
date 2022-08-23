@@ -1,0 +1,76 @@
+@model IEnumerable<AppMovie.Models.Partner>
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Socios</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create" class="btn btn-secondary">Crear Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PartnerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PartnerDirection)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PartnerPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PartnerBirthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Locations)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PartnerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PartnerDirection)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PartnerPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PartnerBirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Locations.LocationName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PartnerID" class="btn btn-success">Editar</a> |
+                @* <a asp-action="Details" asp-route-id="@item.PartnerID">Detalles</a> | *@
+                <a onclick="eliminarSocios(@item.PartnerID);" class="btn btn-danger ">Eliminar</a>
+            </td>
+        </tr>
+
+        <script>function eliminarSocios(id) {
+                        console.log(id);
+                        var eliminar = confirm("Está seguro de eliminar esta seccion?");
+                        if (eliminar) {
+                            location.href = "../../Partners/DeleteConfirmed/" + id;
+                        }
+                    }
+                </script>
+}
+    </tbody>
+</table>
+</body>
+</html>

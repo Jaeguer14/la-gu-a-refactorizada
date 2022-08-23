@@ -1,0 +1,82 @@
+@model IEnumerable<AppMovie.Models.Movie>
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Pelicula</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create" class="btn btn-secondary">Crear Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MovieName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MovieDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MovieDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Section)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Producer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MovieName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MovieDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MovieDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Section.SectionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender.GenderName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producer.ProducerName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MovieID" class="btn btn-success">Editar</a> |
+                @* <a asp-action="Details" asp-route-id="@item.MovieID">Detalles</a> | *@
+                <a onclick="eliminarPelicula(@item.MovieID);" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+
+        <script>function eliminarPelicula(id) {
+                        console.log(id);
+                        var eliminar = confirm("Está seguro de eliminar esta seccion?");
+                        if (eliminar) {
+                            location.href = "../../Movies/DeleteConfirmed/" + id;
+                        }
+                    }
+                </script>
+}
+    </tbody>
+</table>
+</body>
+</html>

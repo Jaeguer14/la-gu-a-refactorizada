@@ -1,0 +1,60 @@
+@model AppMovie.Models.Partner
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Editar</title>
+</head>
+<body>
+
+<h4>Socios</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PartnerID" />
+            <div class="form-group">
+                <label asp-for="PartnerName" class="control-label"></label>
+                <input asp-for="PartnerName" class="form-control" onkeyup="this.value = this.value.toUpperCase()" />
+                <span asp-validation-for="PartnerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PartnerDirection" class="control-label"></label>
+                <input asp-for="PartnerDirection" class="form-control" onkeyup="this.value = this.value.toUpperCase()" />
+                <span asp-validation-for="PartnerDirection" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PartnerPhone" class="control-label"></label>
+                <input asp-for="PartnerPhone" class="form-control" onkeyup="this.value = this.value.toUpperCase()" />
+                <span asp-validation-for="PartnerPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PartnerBirthDate" class="control-label"></label>
+                <input asp-for="PartnerBirthDate" class="form-control" onkeyup="this.value = this.value.toUpperCase()" />
+                <span asp-validation-for="PartnerBirthDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocationID" class="control-label"></label>
+                <select asp-for="LocationID" class="form-control mb-3"  asp-items="ViewBag.LocationID" onkeyup="this.value = this.value.toUpperCase()"></select>
+                <span asp-validation-for="LocationID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary mb-3" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-primary mb-3">Volver</a>
+</div>
+
+</body>
+</html>

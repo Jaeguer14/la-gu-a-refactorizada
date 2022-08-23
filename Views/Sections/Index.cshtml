@@ -1,0 +1,58 @@
+@model IEnumerable<AppMovie.Models.Section>
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Secciones</title>
+</head>
+
+<body>
+    <p>
+        <a asp-action="Create" class="btn btn-secondary" >Crear Nuevo</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.SectionName)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SectionName)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.SectionID" class="btn btn-success">Editar</a> |
+                        @* <a asp-action="Details" asp-route-id="@item.SectionID">Detalles</a> | *@
+                        <a onclick="eliminarSeccion(@item.SectionID);" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+
+                <script>function eliminarSeccion(id) {
+                        console.log(id);
+                        var eliminar = confirm("Está seguro de eliminar esta seccion?");
+                        if (eliminar) {
+                            location.href = "../../Sections/DeleteConfirmed/" + id;
+                        }
+                    }
+                </script>
+            }
+        </tbody>
+    </table>
+
+
+</body>
+
+</html>

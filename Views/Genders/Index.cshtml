@@ -1,0 +1,52 @@
+@model IEnumerable<AppMovie.Models.Gender>
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Generos</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create" class="btn btn-secondary">Crear nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GenderName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GenderName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.GenderID" class="btn btn-success">Editar</a> |
+                @* <a asp-action="Details" asp-route-id="@item.GenderID">Detalles</a> | *@
+               <a onclick="eliminarGenero(@item.GenderID);" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+
+        <script>function eliminarGenero(id) {
+                        console.log(id);
+                        var eliminar = confirm("Está seguro de eliminar esta seccion?");
+                        if (eliminar) {
+                            location.href = "../../Genders/DeleteConfirmed/" + id;
+                        }
+                    }
+                </script>
+}
+    </tbody>
+</table>
+</body>
+</html>

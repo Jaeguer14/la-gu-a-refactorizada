@@ -1,0 +1,58 @@
+@model IEnumerable<AppMovie.Models.Location>
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Localidad</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create" class="btn btn-secondary">Crear Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LocationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LocationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country.CountryName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.LocationID" class="btn btn-success">Editar</a> |
+                @* <a asp-action="Details" asp-route-id="@item.LocationID">Detalles</a> | *@
+                <a onclick="eliminarLocalidad(@item.LocationID);" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+
+        <script>function eliminarLocalidad(id) {
+                        console.log(id);
+                        var eliminar = confirm("Está seguro de eliminar esta seccion?");
+                        if (eliminar) {
+                            location.href = "../../Locations/DeleteConfirmed/" + id;
+                        }
+                    }
+                </script>
+}
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,52 @@
+@model IEnumerable<AppMovie.Models.Country>
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Paises</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create" class="btn btn-secondary">Crear nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CountryName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CountryID" class="btn btn-success">Editar</a> |
+                @* <a asp-action="Details" asp-route-id="@item.CountryID">Detalles</a> | *@
+                <a onclick="eliminarPais(@item.CountryID);" class="btn btn-danger a">Eliminar</a>
+            </td>
+        </tr>
+
+        <script>function eliminarPais(id) {
+                        console.log(id);
+                        var eliminar = confirm("Está seguro de eliminar esta seccion?");
+                        if (eliminar) {
+                            location.href = "../../Countries/DeleteConfirmed/" + id;
+                        }
+                    }
+                </script>
+}
+    </tbody>
+</table>
+</body>
+</html>

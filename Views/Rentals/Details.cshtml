@@ -1,0 +1,39 @@
+@model AppMovie.Models.Rental
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Detalles</title>
+</head>
+<body>
+
+<div>
+    <h4>Alquiler</h4>
+    <hr />
+    <dl class="row text-center colordl">
+        <dt class = "col-sm-5">
+            @Html.DisplayNameFor(model => model.RentalDate)
+        </dt>
+        <dd class = "col-sm-5">
+            @Html.DisplayFor(model => model.RentalDate)
+        </dd>
+        <dt class = "col-sm-5">
+            @Html.DisplayNameFor(model => model.Partner)
+        </dt>
+        <dd class = "col-sm-5">
+            @Html.DisplayFor(model => model.Partner.PartnerName)
+        </dd>
+    </dl>
+</div>
+<div class="text-center col-sm-10">
+    @* <a asp-action="Edit" asp-route-id="@Model?.RentalID"  class="text-center">Editar</a> | *@
+    <a asp-action="Index" class="text-center btn btn-primary">Volver</a>
+</div>
+</body>
+</html>

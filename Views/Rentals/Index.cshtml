@@ -1,0 +1,57 @@
+@model IEnumerable<AppMovie.Models.Rental>
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Alquiler</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create" class="btn btn-secondary">Crear Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RentalDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Partner)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RentalDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Partner.PartnerName)
+            </td>
+            <td>
+                @* <a asp-action="Edit" asp-route-id="@item.RentalID" class="btn btn-success">Editar</a> | *@
+                 <a asp-action="Details" asp-route-id="@item.RentalID" class="btn btn-info">Detalles</a> |
+                  <a onclick="eliminarAlquiler(@item.RentalID);" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+         <script>function eliminarAlquiler(id) {
+                        console.log(id);
+                        var eliminar = confirm("Está seguro de eliminar este alquiler?");
+                        if (eliminar) {
+                            location.href = "../../Rentals/DeleteConfirmed/" + id;
+                        }
+                    }
+                </script>
+}
+    </tbody>
+</table>
+</body>
+</html>
