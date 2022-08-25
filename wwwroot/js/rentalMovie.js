@@ -22,30 +22,23 @@ function CancelRental() {
     })
 }
 
-
-function SearchMovieTemp() {
-    //console.log("Busca la movie");
-
-    $("#tableMovies").empty();
+function QuitarMovie(id){
+    console.log("Peli eliminada");
+    console.log(id);
 
     $.ajax({
-        type: "GET",
-        url: "../../Rentals/SearchMovieTemp",
-        data: {},
-        success: function(ListadoMovieTemp) {
-
-            $.each(ListadoMovieTemp, function(index, item){
-                $("#tableMovies").append(
-                    "<tr>" +
-                        "<th>" + item.movieName + "</th>" +
-                        "<th></th>" +
-                    "</tr>"
-                );
-            });
-
+        type: "POST",
+        url: "../../Rentals/QuitarMovie",
+        data: {MovieID: id},
+        success: function(resultado) {
+            if(resultado == true){
+                location.href="../../Rentals/Create";
+            }
         },
         error(result){
             console.log(result);
         }
     })
 }
+
+

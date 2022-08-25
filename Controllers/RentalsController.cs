@@ -247,6 +247,35 @@ namespace Appmovie.Controllers
             return Json(ListadoMovieTemp);
         }
 
+        public JsonResult QuitarMovie(int MovieID)
+        {
+            var resultado = true;
+
+            using (var transaccion = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var movie = (from a in _context.Movie where a.MovieID == MovieID select a).SingleOrDefault();
+                    movie.EstaAlquilada = false;
+                    _context.SaveChanges();
+
+
+                    var rentalTemp = (from a in _context.RentalDetailTemp where a.MovieID == MovieID select a).SingleOrDefault();
+                    _context.RentalDetailTemp.Remove(rentalTemp);
+                    _context.SaveChanges();
+
+                    transaccion.Commit();
+                }
+                catch (System.Exception)
+                {
+                    transaccion.Rollback();
+                    resultado = false;
+                }
+            }
+
+        return Json(resultado);
+        }
+
         private bool RentalExists(int id)
         {
           return (_context.Rental?.Any(e => e.RentalID == id)).GetValueOrDefault();
