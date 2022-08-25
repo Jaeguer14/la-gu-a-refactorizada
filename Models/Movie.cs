@@ -44,7 +44,14 @@ namespace AppMovie.Models
         [Display(Name = "Productora")]
         public int ProducerID { get; set; }
 
-        [Display(Name = "Productora")]
+        
         public virtual Producer? Producer { get; set; }
-    }
+
+        public bool EstaAlquilada  { get; set; }
+
+        public virtual ICollection<RentalDetail>? RentalDetails  { get; set; }
+
+
+}
+
 }

@@ -21,5 +21,6 @@ namespace AppMovie.Models
 
         public virtual ICollection<RentalDetail>? RentalDetails { get; set; }
 
+
     }
 }

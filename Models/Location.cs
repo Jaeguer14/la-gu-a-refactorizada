@@ -21,7 +21,7 @@ namespace AppMovie.Models
         public int CountryID { get; set; }
 
         [Display(Name = "Pais")]
-        public virtual Country? Country { get; set; }
+        public virtual Country? Countries { get; set; }
         public virtual ICollection<Partner>? Partners { get; set; }
 
 

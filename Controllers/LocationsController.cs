@@ -21,7 +21,7 @@ namespace Appmovie.Controllers
         // GET: Locations
         public async Task<IActionResult> Index()
         {
-            var appMovieContext = _context.Location.Include(l => l.Country);
+            var appMovieContext = _context.Location.Include(l => l.Countries);
             return View(await appMovieContext.ToListAsync());
         }
 
@@ -130,7 +130,7 @@ namespace Appmovie.Controllers
             }
 
             var location = await _context.Location
-                .Include(l => l.Country)
+                .Include(l => l.Countries)
                 .FirstOrDefaultAsync(m => m.LocationID == id);
             if (location == null)
             {

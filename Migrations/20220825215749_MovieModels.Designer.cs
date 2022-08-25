@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Appmovie.Migrations
 {
     [DbContext(typeof(AppMovieContext))]
-    partial class AppMovieContextModelSnapshot : ModelSnapshot
+    [Migration("20220825215749_MovieModels")]
+    partial class MovieModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -260,13 +262,13 @@ namespace Appmovie.Migrations
 
             modelBuilder.Entity("AppMovie.Models.Location", b =>
                 {
-                    b.HasOne("AppMovie.Models.Country", "Countries")
+                    b.HasOne("AppMovie.Models.Country", "Country")
                         .WithMany("Locations")
                         .HasForeignKey("CountryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Countries");
+                    b.Navigation("Country");
                 });
 
             modelBuilder.Entity("AppMovie.Models.Movie", b =>

@@ -22,7 +22,7 @@
                 @Html.DisplayNameFor(model => model.LocationName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Country)
+                @Html.DisplayNameFor(model => model.CountryID)
             </th>
             <th></th>
         </tr>
@@ -34,7 +34,7 @@
                 @Html.DisplayFor(modelItem => item.LocationName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Country.CountryName)
+                @Html.DisplayFor(modelItem => item.Countries.CountryName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.LocationID" class="btn btn-success">Editar</a> |
