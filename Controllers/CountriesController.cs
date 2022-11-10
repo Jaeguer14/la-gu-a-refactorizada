@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AppMovie.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Appmovie.Controllers
 {
+    [Authorize]
     public class CountriesController : Controller
     {
         private readonly AppMovieContext _context;
@@ -21,11 +23,7 @@ namespace Appmovie.Controllers
         // GET: Countries
         public async Task<IActionResult> Index()
         {
-            List<Country> paises= _context.Country.Where(o=>o.CountryID==1).ToList();
-            //   return _context.Country != null ? 
-            //               View(await _context.Country.ToListAsync()) :
-            //               Problem("Entity set 'AppMovieContext.Country'  is null.");
-            return View();
+            return View(await _context.Country.ToListAsync());
         }
 
         // // GET: Countries/Details/5
@@ -142,20 +140,25 @@ namespace Appmovie.Controllers
         // [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Country == null)
-            {
-                return Problem("Entity set 'AppMovieContext.Country'  is null.");
-            }
             var country = await _context.Country.FindAsync(id);
+
             if (country != null)
             {
-                _context.Country.Remove(country);
-                await _context.SaveChangesAsync();
+                var countryInLocation = (from a in _context.Location where a.CountryID == id select a).ToList();
+                if (countryInLocation.Count == 0)
+                {
+                   _context.Country.Remove(country);
+                   await _context.SaveChangesAsync();  
+                }
+                else
+                {
+                    
+                }
+                
             }
-            
-            
             return RedirectToAction(nameof(Index));
         }
+
 
         private bool CountryExists(int id)
         {

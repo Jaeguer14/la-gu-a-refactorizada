@@ -1,0 +1,91 @@
+@model AppMovie.Models.Return
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Crear</title>
+</head>
+<body>
+
+    <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Alquiler</h5>
+          @* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> *@
+        </div>
+        <div class="modal-body">
+          <select id="MovieID" class="form-control" asp-items="ViewBag.MovieID"></select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn btn-outline-primary boton1" data-bs-dismiss="modal">Cancelar</button>
+          <a type="button" class="btn btn btn-outline-primary boton1" onclick="AddMovieReturn();">Agregar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<h4>Devolucion</h4>
+<hr />
+<div class="fondotabla">
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ReturnDate" class="control-label"></label>
+                <input asp-for="ReturnDate" class="form-control" />
+                <span asp-validation-for="ReturnDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PartnerID" class="control-label"></label>
+                <select asp-for="PartnerID" class ="form-control mb-3" asp-items="ViewBag.PartnerID"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn boton4" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<br>
+<div>
+    <a onclick="CancelReturn()" class="btn botonv" asp-action="Index">Volver a la lista</a>
+</div>
+
+<br>
+
+ @* TABLA *@
+  <table class="table table-bordered text-center fondotabla">
+    <thead>
+      <tr class="">
+        <th class="detalle1">Titulo De Pelicula</th>
+        <th>
+          <button type="button" class="btn boton4" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> Agregar
+            peliculas 
+            </button> 
+        </th>
+      </tr>
+    </thead>
+    <tbody id="Return" class="Boton1">
+     
+    </tbody>
+  </table>
+</div>
+
+@section Scripts{
+    <script>
+        window.onload = CargarPaginasDevolucion();
+    </script>
+}
+
+</body>
+</html>

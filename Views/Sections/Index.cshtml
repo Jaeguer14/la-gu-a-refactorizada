@@ -14,10 +14,13 @@
 </head>
 
 <body>
+    <div class="">
     <p>
-        <a asp-action="Create" class="btn btn-secondary" >Crear Nuevo</a>
+      <a asp-action="Create" class="boton4"><span> Crear Nuevo </span></a>
     </p>
-    <table class="table">
+    </div>
+  
+    <table class="table fondotabla">
         <thead>
             <tr>
                 <th>
@@ -26,6 +29,8 @@
                 <th></th>
             </tr>
         </thead>
+
+        
         <tbody>
             @foreach (var item in Model)
             {
@@ -34,9 +39,9 @@
                         @Html.DisplayFor(modelItem => item.SectionName)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.SectionID" class="btn btn-success">Editar</a> |
+                        <a asp-action="Edit" asp-route-id="@item.SectionID" class="btn  botonE">Editar</a> |
                         @* <a asp-action="Details" asp-route-id="@item.SectionID">Detalles</a> | *@
-                        <a onclick="eliminarSeccion(@item.SectionID);" class="btn btn-danger">Eliminar</a>
+                        <a onclick="eliminarSeccion(@item.SectionID);" class="btn botonEl">Eliminar</a>
                     </td>
                 </tr>
 

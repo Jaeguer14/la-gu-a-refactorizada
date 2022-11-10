@@ -20,7 +20,13 @@ using AppMovie.Models;
         public DbSet<AppMovie.Models.Gender> Gender { get; set; }
         public DbSet<AppMovie.Models.Movie> Movie { get; set; }
         public DbSet<AppMovie.Models.Country> Country { get; set; }
-        public DbSet<AppMovie.Models.Rental>? Rental { get; set; }
+        public DbSet<AppMovie.Models.Rental> Rental { get; set; }
         public DbSet<AppMovie.Models.RentalDetail> RentalDetail { get; set; }
         public DbSet<AppMovie.Models.RentalDetailTemp> RentalDetailTemp { get; set; }
+        public DbSet<AppMovie.Models.Return> Return { get; set; }
+
+         public DbSet<AppMovie.Models.ReturnDetail> ReturnDetail { get; set; }
+        public DbSet<AppMovie.Models.ReturnDetailTemp> ReturnDetailTemp { get; set; }
+
+
     }

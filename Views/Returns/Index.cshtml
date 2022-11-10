@@ -1,0 +1,49 @@
+@model IEnumerable<AppMovie.Models.Return>
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Devoluciones</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create" class="btn boton4">Crear Nueva</a>
+</p>
+<table class="table fondotabla">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ReturnDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Partner)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReturnDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Partner.PartnerName)
+            </td>
+            <td>
+                @* <a asp-action="Edit" asp-route-id="@item.ReturnID">Edit</a> | *@
+                <a asp-action="Details" asp-route-id="@item.ReturnID" class="btn botong">Detalles</a> 
+                @* <a asp-action="Delete" asp-route-id="@item.ReturnID">Delete</a> *@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>

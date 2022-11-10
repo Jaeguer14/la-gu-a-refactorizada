@@ -16,7 +16,7 @@
 <div>
     <h4>Alquiler</h4>
     <hr />
-    <dl class="row text-center colordl">
+    <dl class="row text-center colordl fondotabla">
         <dt class = "col-sm-5">
             @Html.DisplayNameFor(model => model.RentalDate)
         </dt>
@@ -31,9 +31,32 @@
         </dd>
     </dl>
 </div>
+
+<table class="table table-bordered text-center fondotabla">
+        <thead>
+            <tr class="">
+                <th class="detalle1">Titulo De Pelicula</th>
+                <th>
+                    <div class="pokecoder"></div>
+                </th>
+            </tr>
+        </thead>
+        <tbody id="tableMovie" class="Boton1">
+           
+        </tbody>
+    </table>
+
 <div class="text-center col-sm-10">
     @* <a asp-action="Edit" asp-route-id="@Model?.RentalID"  class="text-center">Editar</a> | *@
-    <a asp-action="Index" class="text-center btn btn-primary">Volver</a>
+    <a asp-action="Index" class="text-center btn botonv">Volver</a>
 </div>
+
+@section Scripts{
+    <script>
+        window.onload = SearchMovie(@Model?.RentalID);
+    </script>
+}
+
+
 </body>
 </html>

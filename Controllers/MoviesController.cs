@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AppMovie.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Appmovie.Controllers
 {
+    [Authorize]
     public class MoviesController : Controller
     {
         private readonly AppMovieContext _context;
@@ -157,20 +159,28 @@ namespace Appmovie.Controllers
         // [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Movie == null)
-            {
-                return Problem("Entity set 'AppMovieContext.Movie'  is null.");
-            }
             var movie = await _context.Movie.FindAsync(id);
             if (movie != null)
             {
-                _context.Movie.Remove(movie);
-                 await _context.SaveChangesAsync();
+                var movieAlquilada = (from a in _context.RentalDetail where a.MovieID == id select a).Count();
+                if (movieAlquilada == 0)
+                {
+                    _context.Movie.Remove(movie);
+                    await _context.SaveChangesAsync(); 
+                }
+                else
+                {
+                    movie.IsDeleted = true;
+                    movie.MovieName = "Eliminada";
+                    _context.Update(movie);
+                    await _context.SaveChangesAsync(); 
+                }
+              
             }
             
-           
             return RedirectToAction(nameof(Index));
         }
+
 
         private bool MovieExists(int id)
         {

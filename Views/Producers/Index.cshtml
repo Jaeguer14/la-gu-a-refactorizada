@@ -15,9 +15,9 @@
 
 <body>
     <p>
-        <a asp-action="Create" class="btn btn-secondary">Crear Nuevo</a>
+        <a asp-action="Create" class="btn boton4">Crear Nuevo</a>
     </p>
-    <table class="table">
+    <table class="table fondotabla">
         <thead>
             <tr>
                 <th>
@@ -34,9 +34,9 @@
                         @Html.DisplayFor(modelItem => item.ProducerName)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.ProducerID" class="btn btn-success">Editar</a> |
+                        <a asp-action="Edit" asp-route-id="@item.ProducerID" class="btn botonE">Editar</a> |
                         @* <a asp-action="Details" asp-route-id="@item.ProducerID">Detalles</a> | *@
-                        <a onclick="eliminarProductora(@item.ProducerID);" class="btn btn-danger">Eliminar</a>
+                        <a onclick="eliminarProductora(@item.ProducerID);" class="btn botonEl">Eliminar</a>
                     </td>
                 </tr>
 

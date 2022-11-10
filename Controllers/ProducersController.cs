@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AppMovie.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Appmovie.Controllers
 {
+    [Authorize]
     public class ProducersController : Controller
     {
         private readonly AppMovieContext _context;
@@ -138,20 +140,24 @@ namespace Appmovie.Controllers
         // POST: Producers/Delete/5
         // [HttpPost, ActionName("Delete")]
         // [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+          public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Producer == null)
-            {
-                return Problem("Entity set 'AppMovieContext.Producer'  is null.");
-            }
-            var producer = await _context.Producer.FindAsync(id);
-            if (producer != null)
-            {
-                _context.Producer.Remove(producer);
-                await _context.SaveChangesAsync();
-            }
+            var Productora = await _context.Producer.FindAsync(id);
             
-            
+            if (Productora != null)
+            {
+                var ProducturaInMovie = (from a in _context.Movie where a.ProducerID == id select a).ToList();
+                if (ProducturaInMovie.Count == 0)
+                {
+                    _context.Producer.Remove(Productora);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    
+                }
+            }
+
             return RedirectToAction(nameof(Index));
         }
 

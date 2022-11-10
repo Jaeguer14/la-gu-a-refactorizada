@@ -1,0 +1,125 @@
+
+      
+    .boton4 {
+      color: rgba(255, 255, 255, 0.9) !important;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 0.5em 1.2em;
+      background: #318aac;
+      border: 2px solid; 
+      border-radius: 12px;
+      border-color: #318aac;
+      position: relative;
+      text-decoration: none;
+    }
+    .boton4:hover {
+      color: rgba(255, 255, 255, 1) !important;
+      box-shadow: 0 4px 16px rgba(49, 138, 172, 1);
+      transition: all 0.2s ease;
+    
+    }
+
+    .botonE {
+      color: rgba(255, 255, 255, 0.9) !important;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 0.5em 1.2em;
+      background: #78909C;
+      border: 2px solid; 
+      border-radius: 12px;
+      border-color: #455A64 ;
+      position: relative;
+      text-decoration: none;
+    }
+    .botonE:hover {
+      color: rgba(255, 255, 255, 1) !important;
+      box-shadow: 0 4px 16px rgb(240, 251, 255);
+      transition: all 0.2s ease;
+    
+    }
+
+    .botonEl {
+      color: rgba(255, 255, 255, 0.9) !important;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 0.5em 1.2em;
+      background:#EF5350;
+      border: 2px solid; 
+      border-radius: 12px;
+      border-color:#B71C1C ;
+      position: relative;
+      text-decoration: none;
+    }
+    .botonEl:hover {
+      color: rgba(255, 255, 255, 1) !important;
+      box-shadow: 0 4px 16px rgb(240, 251, 255);
+      transition: all 0.2s ease;
+    
+    }
+
+    .botonv {
+      color: rgba(4, 4, 4, 0.9) !important;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 0.5em 1.2em;
+      background:#F5F5F5;
+      border: 2px solid; 
+      border-radius: 12px;
+      border-color:rgba(49, 138, 172, 1)  ;
+      position: relative;
+      text-decoration: none;
+    }
+    .botonv:hover {
+      color: rgb(5, 4, 4) !important;
+      box-shadow: 0 4px 16px rgb(240, 251, 255);
+      transition: all 0.2s ease;
+    
+    }
+
+    .botong {
+      color: rgba(255, 255, 255, 0.9) !important;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 0.5em 1.2em;
+      background:#388E3C ;
+      border: 2px solid; 
+      border-radius: 12px;
+      border-color:#1B5E20 ;
+      position: relative;
+      text-decoration: none;
+    }
+    .botong:hover {
+      color: rgb(255, 255, 255) !important;
+      box-shadow: 0 4px 16px rgb(240, 251, 255);
+      transition: all 0.2s ease;
+    
+    }
+
+
+    .botonc {
+      color: rgba(255, 255, 255, 0.9) !important;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 0.5em 1.2em;
+      background:#B71C1C;
+      border: 2px solid; 
+      border-radius: 12px;
+      border-color:#B71C1C ;
+      position: relative;
+      text-decoration: none;
+    }
+    .botonc:hover {
+      color: rgba(255, 255, 255, 1) !important;
+      box-shadow: 0 4px 16px rgb(240, 251, 255);
+      transition: all 0.2s ease;
+    
+    }
+
+    .colorf{
+      color: white;
+    
+    }
+
+   .texto{
+      text-decoration: none;
+    }

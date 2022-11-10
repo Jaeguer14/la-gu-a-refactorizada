@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AppMovie.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Appmovie.Controllers
 {
+    [Authorize]
     public class GendersController : Controller
     {
         private readonly AppMovieContext _context;
@@ -138,20 +140,24 @@ namespace Appmovie.Controllers
         // POST: Genders/Delete/5
         // [HttpPost, ActionName("Delete")]
         // [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+          public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Gender == null)
-            {
-                return Problem("Entity set 'AppMovieContext.Gender'  is null.");
-            }
-            var gender = await _context.Gender.FindAsync(id);
-            if (gender != null)
-            {
-                _context.Gender.Remove(gender);
-                await _context.SaveChangesAsync();
-            }
+            var Genders = await _context.Gender.FindAsync(id);
             
-            
+            if (Genders != null)
+            {
+                var GenderInMovie = (from a in _context.Movie where a.GenderID == id select a).ToList();
+                if (GenderInMovie.Count == 0)
+                {
+                    _context.Gender.Remove(Genders);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    
+                }
+            }
+
             return RedirectToAction(nameof(Index));
         }
 

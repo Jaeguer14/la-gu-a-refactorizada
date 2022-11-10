@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AppMovie.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Appmovie.Controllers
 {
+    [Authorize]
     public class SectionsController : Controller
     {
         private readonly AppMovieContext _context;
@@ -138,20 +140,24 @@ namespace Appmovie.Controllers
         // POST: Sections/Delete/5
         // [HttpPost, ActionName("Delete")]
         // [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Section == null)
-            {
-                return Problem("Entity set 'AppMovieContext.Section'  is null.");
-            }
             var section = await _context.Section.FindAsync(id);
+            
             if (section != null)
             {
-                _context.Section.Remove(section);
-                await _context.SaveChangesAsync();
+                var sectionInMovie = (from a in _context.Movie where a.SectionID == id select a).ToList();
+                if (sectionInMovie.Count == 0)
+                {
+                    _context.Section.Remove(section);
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    
+                }
             }
-            
-            
+
             return RedirectToAction(nameof(Index));
         }
 

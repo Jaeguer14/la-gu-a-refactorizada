@@ -94,6 +94,9 @@ namespace Appmovie.Migrations
                     b.Property<int>("GenderID")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("MovieDate")
                         .HasColumnType("datetime2");
 
@@ -240,6 +243,72 @@ namespace Appmovie.Migrations
                     b.ToTable("RentalDetailTemp");
                 });
 
+            modelBuilder.Entity("AppMovie.Models.Return", b =>
+                {
+                    b.Property<int>("ReturnID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReturnID"), 1L, 1);
+
+                    b.Property<int>("PartnerID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ReturnDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ReturnID");
+
+                    b.HasIndex("PartnerID");
+
+                    b.ToTable("Return");
+                });
+
+            modelBuilder.Entity("AppMovie.Models.ReturnDetail", b =>
+                {
+                    b.Property<int>("ReturnDetailID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReturnDetailID"), 1L, 1);
+
+                    b.Property<int>("MovieID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MovieName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ReturnID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ReturnDetailID");
+
+                    b.HasIndex("MovieID");
+
+                    b.HasIndex("ReturnID");
+
+                    b.ToTable("ReturnDetail");
+                });
+
+            modelBuilder.Entity("AppMovie.Models.ReturnDetailTemp", b =>
+                {
+                    b.Property<int>("ReturnDetailTempID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReturnDetailTempID"), 1L, 1);
+
+                    b.Property<int>("MovieID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("MovieName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ReturnDetailTempID");
+
+                    b.ToTable("ReturnDetailTemp");
+                });
+
             modelBuilder.Entity("AppMovie.Models.Section", b =>
                 {
                     b.Property<int>("SectionID")
@@ -337,6 +406,36 @@ namespace Appmovie.Migrations
                     b.Navigation("Rental");
                 });
 
+            modelBuilder.Entity("AppMovie.Models.Return", b =>
+                {
+                    b.HasOne("AppMovie.Models.Partner", "Partner")
+                        .WithMany()
+                        .HasForeignKey("PartnerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Partner");
+                });
+
+            modelBuilder.Entity("AppMovie.Models.ReturnDetail", b =>
+                {
+                    b.HasOne("AppMovie.Models.Movie", "Movie")
+                        .WithMany()
+                        .HasForeignKey("MovieID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AppMovie.Models.Return", "Return")
+                        .WithMany("ReturnDetail")
+                        .HasForeignKey("ReturnID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Movie");
+
+                    b.Navigation("Return");
+                });
+
             modelBuilder.Entity("AppMovie.Models.Country", b =>
                 {
                     b.Navigation("Locations");
@@ -365,6 +464,11 @@ namespace Appmovie.Migrations
             modelBuilder.Entity("AppMovie.Models.Rental", b =>
                 {
                     b.Navigation("RentalDetails");
+                });
+
+            modelBuilder.Entity("AppMovie.Models.Return", b =>
+                {
+                    b.Navigation("ReturnDetail");
                 });
 
             modelBuilder.Entity("AppMovie.Models.Section", b =>

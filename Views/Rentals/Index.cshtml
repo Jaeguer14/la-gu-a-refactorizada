@@ -13,9 +13,11 @@
 </head>
 <body>
 <p>
-    <a asp-action="Create" class="btn btn-secondary">Crear Nuevo</a>
+    <a asp-action="Create" class="btn boton4">Crear Nuevo</a>
 </p>
-<table class="table">
+
+
+<table class="table fondotabla">
     <thead>
         <tr>
             <th>
@@ -38,18 +40,18 @@
             </td>
             <td>
                 @* <a asp-action="Edit" asp-route-id="@item.RentalID" class="btn btn-success">Editar</a> | *@
-                 <a asp-action="Details" asp-route-id="@item.RentalID" class="btn btn-info">Detalles</a> |
-                  <a onclick="eliminarAlquiler(@item.RentalID);" class="btn btn-danger">Eliminar</a>
+                 <a asp-action="Details" asp-route-id="@item.RentalID" class="btn botong">Detalles</a> 
+                  @* <a onclick="eliminarAlquiler(@item.RentalID);" class="btn btn-danger">Eliminar</a> *@
             </td>
         </tr>
-         <script>function eliminarAlquiler(id) {
+         @* <script>function eliminarAlquiler(id) {
                         console.log(id);
                         var eliminar = confirm("Está seguro de eliminar este alquiler?");
                         if (eliminar) {
                             location.href = "../../Rentals/DeleteConfirmed/" + id;
                         }
                     }
-                </script>
+                </script> *@
 }
     </tbody>
 </table>

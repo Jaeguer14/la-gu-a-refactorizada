@@ -2,6 +2,8 @@ html {
   font-size: 14px;
 }
 
+
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -14,24 +16,51 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
-  background-image: url("https://freakelitex.com/wp-content/uploads/2018/12/VO-cinema-in-Barcelona.jpg");
+  /* margin: 0;
+  padding: 0; */
+  /* margin-bottom: 60px; */
+  /* background: linear-gradient(rgba(5, 7, 12, 0.95), rgba(5, 7, 12, 0.75)); */
+  background-image: url("https://freakelitex.com/wp-content/uploads/2018/12/VO-cinema-in-Barcelona.jpg"); 
+
+  /* height: 100vh;
+  width: 100vh;  */
+  background-position: center;
+
+
 }
+
+
+
+.centrar{
+  position: absolute;
+  width: 30%;
+  height: 40%;
+  top: 22%;
+  left: 35%;
+  flex-wrap: wrap;
+  margin: 10px ;
+  padding: 5px ;
+
+}
+
+
 
 .titulohome{
   border: 2px solid white ;
   box-shadow: inset 0 0 30px red, 0 0 20px red;
   border-radius: 60px;
-  max-width: 400px;
-  margin: auto;
-  padding: 20px;
-  text-align: center;
+  /* max-width: 400px; */
+  /* margin: auto; */
+  /* padding: 20px; */
+  text-align: center; 
   color: white;
+  min-width: 320px;
+  margin-bottom: 0px;
 }
 
 .neon1{
   
-  margin: 0;
+   margin: 0; 
   font-size: 50px;
   text-shadow: 0 0 5px red, 0 0 15px red, 0 0 30px red, 0 0 50px red;
 }
@@ -68,6 +97,11 @@ body {
   }
 }
 
+.fondotabla{
+  background: linear-gradient(rgba(5, 7, 12, 0.75), rgba(5, 7, 12, 0.50)); 
+
+}
+
 th{
   color: white;
 }
@@ -92,3 +126,15 @@ h3{
   color: white
 ;
 }
+
+/* .cerrar{
+  padding-left: 23rem;
+}
+
+.iniciar{
+  padding-left: 66rem;
+} */
+
+ 
+
+

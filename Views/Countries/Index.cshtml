@@ -13,9 +13,9 @@
 </head>
 <body>
 <p>
-    <a asp-action="Create" class="btn btn-secondary">Crear nuevo</a>
+    <a asp-action="Create" class="btn boton4">Crear nuevo</a>
 </p>
-<table class="table">
+<table class="table fondotabla">
     <thead>
         <tr>
             <th>
@@ -25,15 +25,16 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model)
+ {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.CountryName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.CountryID" class="btn btn-success">Editar</a> |
+                <a asp-action="Edit" asp-route-id="@item.CountryID" class="btn botonE">Editar</a> |
                 @* <a asp-action="Details" asp-route-id="@item.CountryID">Detalles</a> | *@
-                <a onclick="eliminarPais(@item.CountryID);" class="btn btn-danger a">Eliminar</a>
+                <a onclick="eliminarPais(@item.CountryID);" class="btn botonEl a">Eliminar</a>
             </td>
         </tr>
 

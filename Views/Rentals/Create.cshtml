@@ -1,21 +1,23 @@
 @model AppMovie.Models.Rental
 
 @{
-    Layout = "_Layout";
+  Layout = "_Layout";
 }
 
 <!DOCTYPE html>
 
 <html>
+
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Crear</title>
+  <meta name="viewport" content="width=device-width" />
+  <title>Crear</title>
 </head>
-<body>  
-    <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Nose que poner
-  </button>
+
+<body>
+  @* <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Nose que poner
+    </button> *@
 
   <!-- Modal -->
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
@@ -23,45 +25,73 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Modal</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">Renta</h5>
           @* <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> *@
         </div>
         <div class="modal-body">
-          ...
+          <select id="MovieID" class="form-control" asp-items="ViewBag.MovieID"></select>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn btn-outline-primary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn btn-outline-primary">Understood</button>
+          <button type="button" class="btn btn btn-outline-primary boton1" data-bs-dismiss="modal">Cancelar</button>
+          <a type="button" class="btn btn btn-outline-primary boton1" onclick="AddMovieTemp();">Agregar</a>
         </div>
       </div>
     </div>
   </div>
 
-<h4>Alquiler</h4>
-<hr />
-<div class="row">
+  <h4>Alquiler</h4>
+  <hr />
+  <div class="fondotabla">
+  <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="RentalDate" class="control-label"></label>
-                <input asp-for="RentalDate" class="form-control" />
-                <span asp-validation-for="RentalDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PartnerID" class="control-label"></label>
-                <select asp-for="PartnerID" class ="form-control mb-3" asp-items="ViewBag.PartnerID"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Crear" class="btn btn-primary" />
-            </div>
-        </form>
+      <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+          <label asp-for="RentalDate" class="control-label"></label>
+          <input asp-for="RentalDate" class="form-control" />
+          <span asp-validation-for="RentalDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+          <label asp-for="PartnerID" class="control-label"></label>
+          <select asp-for="PartnerID" class="form-control mb-3" asp-items="ViewBag.PartnerID"></select>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Crear Alquiler" class="btn boton4" />
+        </div>
+      </form>
     </div>
-</div>
- <br>
-<div class="mb-3">
-    <a asp-action="Index" class="btn btn-primary">Volver</a>
-</div>
+  </div>
 
+
+  <br>
+  <div>
+    <a onclick="CancelRental()" class="btn botonc fondotabla" asp-action="Index">Cancelar Alquiler</a>
+  </div>
+<br>
+
+  @* TABLA *@
+  <table class="table table-bordered text-center fondotabla">
+    <thead>
+      <tr class="">
+        <th class="">Titulo De Pelicula</th>
+        <th>
+          <button type="button" class="btn boton4" data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop">Agregar
+            peliculas
+          </button>
+        </th>
+      </tr>
+    </thead>
+    <tbody id="tablesMovies" class="">
+
+    </tbody>
+  </table>
+  </div>
+  @* @section Scripts{
+    <script>
+    window.onload = SearchMovieTemp(@Model?.RentalID);
+    </script> *@
+  @* } *@
 </body>
+
 </html>

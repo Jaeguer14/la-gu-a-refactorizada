@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AppMovie.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Appmovie.Controllers
 {
+    [Authorize]
     public class LocationsController : Controller
     {
         private readonly AppMovieContext _context;
@@ -145,17 +147,21 @@ namespace Appmovie.Controllers
         // [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Location == null)
-            {
-                return Problem("Entity set 'AppMovieContext.Location'  is null.");
-            }
             var location = await _context.Location.FindAsync(id);
             if (location != null)
             {
-                _context.Location.Remove(location);
-                await _context.SaveChangesAsync();
+                var locationInPartner = (from a in _context.Partner where a.LocationID == id select a).ToList();
+                if (locationInPartner.Count == 0)
+                {
+                    _context.Location.Remove(location);
+                    await _context.SaveChangesAsync(); 
+                }
+                else
+                {
+                    
+                }
+               
             }
-            
             
             return RedirectToAction(nameof(Index));
         }
